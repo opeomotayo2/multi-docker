@@ -1,5 +1,5 @@
-Purpose: Orchestrate Fibonacci Calculator in AWS
+Purpose: Orchestrate Fibonacci Calculator in AWS (EBS)
 
 Devops Tool Used: Docker, TravisCI, AWS ElasticBeanStalk (EBS)
 
-Programming Language: ReactJs, NodeJs (Express), Redis, PostgreSQL
+Developer Tools: ReactJs, NodeJs (Express), Redis, PostgreSQL

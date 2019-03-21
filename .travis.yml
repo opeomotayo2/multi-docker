@@ -1,0 +1,39 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t opeomotayo/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  -  docker run opeomotayo/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t opeomotayo/multi-client ./client
+  - docker build -t opeomotayo/multi-nginx ./nginx
+  - docker build -t opeomotayo/multi-server ./server
+  - docker build -t opeomotayo/multi-worker ./worker
+
+  #Log in to the docker cli
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  #Push built images to docker hub
+  - docker push opeomotayo/multi-client
+  - docker push opeomotayo/multi-nginx
+  - docker push opeomotayo/multi-server
+  - docker push opeomotayo/multi-worker
+
+
+
+# deploy:
+#   provider: elasticbeanstalk
+#   region: "eu-west-2"
+#   app: "docker2"
+#   env: "Docker2-env"
+#   bucket_name: "elasticbeanstalk-eu-west-2-338554425790"
+#   bucket_path: "docker2"
+#   on:
+#     branch: master
+#   access_key_id: 
+#     secure: "$AWS_ACCESS_KEY"
+#   secret_access_key:
+#     secure: "$AWS_SECRET_KEY"
