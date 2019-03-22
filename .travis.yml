@@ -22,18 +22,16 @@ after_success:
   - docker push opeomotayo/multi-server
   - docker push opeomotayo/multi-worker
 
-
-
-# deploy:
-#   provider: elasticbeanstalk
-#   region: "eu-west-2"
-#   app: "docker2"
-#   env: "Docker2-env"
-#   bucket_name: "elasticbeanstalk-eu-west-2-338554425790"
-#   bucket_path: "docker2"
-#   on:
-#     branch: master
-#   access_key_id: 
-#     secure: "$AWS_ACCESS_KEY"
-#   secret_access_key:
-#     secure: "$AWS_SECRET_KEY"
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-2"
+  app: "multi-docker"
+  env: "MultiDocker-env"
+  bucket_name: "elasticbeanstalk-eu-west-2-338554425790"
+  bucket_path: "docker-multi"
+  on:
+    branch: master
+  access_key_id: 
+    secure: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
