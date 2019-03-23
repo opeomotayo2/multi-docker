@@ -1,10 +1,10 @@
 #Specify a base image
 FROM node:alpine
 
-WORKDIR '/app'
+WORKDIR /app
 
 #Install some dependencies
-COPY ./package.json ./
+COPY package*.json ./
 RUN npm install
 COPY . .
 
